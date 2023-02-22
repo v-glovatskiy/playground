@@ -3,38 +3,26 @@ from sys import argv
 import os
 import csv
 
-if len(argv)<2:
-    print ('Fatal: you forgot to enter an argument.')
-else:
-    print('argument exists')
-script, filename = argv
+if len(argv) < 3:
+    print('Fatal: you forgot to enter an argument.')
 
-name = 'ERROR'
-if os.access((filename), os.F_OK): 
-    print ('Given file path is exist.')
+script, filename, second = argv
+mame = second
 
-if os.access((filename), os.R_OK):
-    print ('File is accessible to read')
- 
-if os.access((filename), os.W_OK): 
-    print ('File is accessible to write')
- 
-else:
-    print('no such file')
+if not os.access(filename, os.F_OK):
+    print('No such file')
+    os._exit(os.F_OK)
 
-
-txt = open(filename)
-
-print ('Содержимое файла %r' % filename)
-#print (txt.read())
-
-for string in txt:
-
-    if name in string:
-                   
-        print(string)
-
-
-
+with open(filename, "r", newline="") as file:
+    reader = csv.DictReader(file)
+    for row in reader:
+        if row["log_level"] == mame:
+            print(row)
+                                
     
+
+
+
+
+
 
