@@ -15,9 +15,12 @@ if not os.access(filename, os.F_OK):
 
 with open(filename, "r", newline="") as file:
     reader = csv.DictReader(file)
+    count = 0
     for row in reader:
         if row["log_level"] == mame:
-            print(row)
+            count += 1
+    print(count)
+            
                                 
     
 
