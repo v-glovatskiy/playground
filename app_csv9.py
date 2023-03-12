@@ -8,6 +8,7 @@ if len(argv) < 3:
 
 script, filename, second = argv
 mame = second
+a = []
 
 if not os.access(filename, os.F_OK):
     print('No such file')
@@ -15,11 +16,13 @@ if not os.access(filename, os.F_OK):
 
 with open(filename, "r", newline="") as file:
     reader = csv.DictReader(file)
-    count = 0
+    
     for row in reader:
         if row["log_level"] == mame:
-            count += 1
-    print(count)
+            a.append(mame)
+print(len(a))
+            
+    
             
                                 
     
